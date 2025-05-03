@@ -1,6 +1,8 @@
 #include "app.h"
+#include "stb_easy_font.h"
 
 #include <SDL2/SDL_image.h>
+
 
 
 void init_app(App* app, int width, int height)
@@ -9,6 +11,7 @@ void init_app(App* app, int width, int height)
     int inited_loaders;
 
     app->is_running = false;
+    app->show_manual = false;
 
     error_code = SDL_Init(SDL_INIT_EVERYTHING);
     if (error_code != 0) {
@@ -99,6 +102,7 @@ void reshape(GLsizei width, GLsizei height)
 }
 
 
+
 void handle_app_events(App* app)
 {
     SDL_Event event;
@@ -113,15 +117,13 @@ void handle_app_events(App* app)
         case SDL_KEYDOWN:
             switch (event.key.keysym.scancode) {
             case SDL_SCANCODE_F1:
-                printf("man");
+                app->show_manual = !app->show_manual;
                 break;                
             case SDL_SCANCODE_J:
                 SDL_SetWindowBrightness((app->window), 0.5f);
-                printf("jpressed");
                 break;
             case SDL_SCANCODE_K:
                 SDL_SetWindowBrightness((app->window), 1.0f);
-                printf("kpressed");
                 break;
             case SDL_SCANCODE_ESCAPE:
                 app->is_running = false;
@@ -204,6 +206,34 @@ void render_app(App* app)
 
     if (app->camera.is_preview_visible) {
         show_texture_preview();
+    }
+
+    if (app->show_manual) {
+        static char buffer[9999];
+        static const char* help_text = "F1 - Toggle Help\nJ - Darken screen\nK - Brighten screen";
+
+        int num_quads = stb_easy_font_print(90, 75, (char*)help_text, NULL, buffer, sizeof(buffer));
+
+        glMatrixMode(GL_PROJECTION);
+        glPushMatrix();
+        glLoadIdentity();
+        glOrtho(0, 800, 600, 0, -1, 1);
+
+        glMatrixMode(GL_MODELVIEW);
+        glPushMatrix();
+        glLoadIdentity();
+
+        glColor3f(1.0f, 1.0f, 1.0f);
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glScalef(3.0f, 3.0f, 1.0f); // Scale up (2x size)
+        glVertexPointer(2, GL_FLOAT, 16, buffer);
+        glDrawArrays(GL_QUADS, 0, num_quads * 4);
+        glDisableClientState(GL_VERTEX_ARRAY);
+
+        glPopMatrix();
+        glMatrixMode(GL_PROJECTION);
+        glPopMatrix();
+        glMatrixMode(GL_MODELVIEW);
     }
 
     SDL_GL_SwapWindow(app->window);

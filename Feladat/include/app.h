@@ -6,6 +6,7 @@
 
 #include <SDL2/SDL.h>
 
+
 #include <stdbool.h>
 
 #define VIEWPORT_RATIO (4.0 / 3.0)
@@ -19,6 +20,7 @@ typedef struct App
     double uptime;
     Camera camera;
     Scene scene;
+    bool show_manual;
 } App;
 
 /**
