@@ -56,4 +56,5 @@ void render_app(App* app);
  */
 void destroy_app(App* app);
 
+
 #endif /* APP_H */

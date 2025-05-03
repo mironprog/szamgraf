@@ -84,7 +84,7 @@ void show_texture_preview()
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    glColor3f(1, 1, 1);
+    glColor4f(1.0f, 1.0f, 1.0f, 0.2f);
 
     glBegin(GL_QUADS);
     glTexCoord2f(0, 0);
@@ -101,3 +101,5 @@ void show_texture_preview()
     glEnable(GL_LIGHTING);
     glEnable(GL_DEPTH_TEST);
 }
+
+

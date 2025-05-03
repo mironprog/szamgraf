@@ -2,6 +2,7 @@
 
 #include <SDL2/SDL_image.h>
 
+
 void init_app(App* app, int width, int height)
 {
     int error_code;
@@ -97,6 +98,7 @@ void reshape(GLsizei width, GLsizei height)
     );
 }
 
+
 void handle_app_events(App* app)
 {
     SDL_Event event;
@@ -110,6 +112,17 @@ void handle_app_events(App* app)
         switch (event.type) {
         case SDL_KEYDOWN:
             switch (event.key.keysym.scancode) {
+            case SDL_SCANCODE_F1:
+                printf("man");
+                break;                
+            case SDL_SCANCODE_J:
+                SDL_SetWindowBrightness((app->window), 0.5f);
+                printf("jpressed");
+                break;
+            case SDL_SCANCODE_K:
+                SDL_SetWindowBrightness((app->window), 1.0f);
+                printf("kpressed");
+                break;
             case SDL_SCANCODE_ESCAPE:
                 app->is_running = false;
                 break;
