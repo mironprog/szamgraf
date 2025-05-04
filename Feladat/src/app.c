@@ -125,6 +125,12 @@ void handle_app_events(App* app)
             case SDL_SCANCODE_K:
                 SDL_SetWindowBrightness((app->window), 1.0f);
                 break;
+            case SDL_SCANCODE_SPACE:
+                set_camera_vert_speed(&(app->camera), 1);
+                break;
+            case SDL_SCANCODE_LSHIFT:
+                set_camera_vert_speed(&(app->camera), -1);
+                break;
             case SDL_SCANCODE_ESCAPE:
                 app->is_running = false;
                 break;
@@ -153,6 +159,10 @@ void handle_app_events(App* app)
             case SDL_SCANCODE_A:
             case SDL_SCANCODE_D:
                 set_camera_side_speed(&(app->camera), 0);
+                break;
+            case SDL_SCANCODE_SPACE:
+            case SDL_SCANCODE_LSHIFT:
+                set_camera_vert_speed(&(app->camera), 0);
                 break;
             default:
                 break;

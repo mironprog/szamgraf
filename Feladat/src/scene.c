@@ -5,7 +5,7 @@
 
 void init_scene(Scene* scene)
 {
-    load_model(&(scene->cube), "assets/models/cube.obj");
+    load_model(&(scene->cube), "assets/models/truncpyr.obj");
     scene->texture_id = load_texture("assets/textures/cube.png");
 
     glBindTexture(GL_TEXTURE_2D, scene->texture_id);
