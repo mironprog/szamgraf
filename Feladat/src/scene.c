@@ -3,12 +3,16 @@
 #include <obj/load.h>
 #include <obj/draw.h>
 
+#include "fire.h"
+
 void init_scene(Scene* scene)
 {
     load_model(&(scene->cube), "assets/models/truncpyr.obj");
     scene->texture_id = load_texture("assets/textures/cube.png");
 
     glBindTexture(GL_TEXTURE_2D, scene->texture_id);
+    
+    init_explosion(&(scene->explosion));
 
     scene->material.ambient.red = 0.0;
     scene->material.ambient.green = 0.0;
@@ -65,15 +69,18 @@ void set_material(const Material* material)
     glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, &(material->shininess));
 }
 
-void update_scene(Scene* scene)
+void update_scene(Scene* scene, double elapsed_time)
 {
+    update_explosion(&(scene->explosion), elapsed_time);
 }
 
 void render_scene(const Scene* scene)
 {
+    
     set_material(&(scene->material));
     set_lighting();
     draw_origin();
+    render_explosion(&(scene->explosion));
     draw_model(&(scene->cube));
 }
 
