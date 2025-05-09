@@ -80,7 +80,3 @@ void render_explosion(const Explosion* explosion)
   glEnable(GL_TEXTURE_2D);
 }
 
-void destroy_explosion(Explosion* explosion)
-{
-}
-

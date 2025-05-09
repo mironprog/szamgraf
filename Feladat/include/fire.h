@@ -35,10 +35,5 @@ void update_explosion(Explosion* explosion, double elapsed_time);
  */
 void render_explosion(const Explosion* explosion);
 
-/**
- * Deallocate the resources.
- */
-void destroy_explosion(Explosion* explosion);
-
 #endif /* EXPLOSION_H */
 
