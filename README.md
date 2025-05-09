@@ -1,6 +1,6 @@
 
 # Számítógépes grafika
-A cél egy egyszerű, interaktív 3D-s jelenet megvalósítása OpenGL és SDL2 használatával. A program betölt egy 3D modellt (csonkagúla), amely textúrázva és megvilágítva jelenik meg, emellett tűz effekt is látható animációként.
+A cél egy egyszerű, interaktív 3D-s jelenet megvalósítása OpenGL és SDL2 használatával. A program betölt egy 3D modellt (csonkagúla), amely textúrázva és megvilágítva jelenik meg, emellett havazás effekt is látható animációként.
 
 # Kezelési útmutató
 
