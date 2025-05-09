@@ -2,7 +2,7 @@
 #define SCENE_H
 
 #include "camera.h"
-#include "fire.h"
+#include "snow.h"
 #include "texture.h"
 
 
@@ -13,7 +13,7 @@ typedef struct Scene
     Model cube;
     Material material;
     GLuint texture_id;
-    Explosion explosion;
+    Snow snow;
 } Scene;
 
 /**

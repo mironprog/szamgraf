@@ -1,5 +1,5 @@
-#ifndef EXPLOSION_H
-#define EXPLOSION_H
+#ifndef SNOW_H
+#define SNOW_H
 
 #include "texture.h"
 #include "utils.h"
@@ -14,26 +14,26 @@ typedef struct Particle {
   double lifetime;
 } Particle;
 
-typedef struct Explosion {
+typedef struct Snow {
   Model model;
   GLuint texture_id;
   Particle particles[N_PARTICLES];
-} Explosion;
+} Snow;
 
 /**
- * Initialize the particles of the explosion.
+ * Initialize the particles of the snow.
  */
-void init_explosion(Explosion* explosion);
+void init_snow(Snow* snow);
 
 /**
  * Update the position of the particles.
  */
-void update_explosion(Explosion* explosion, double elapsed_time);
+void update_snow(Snow* snow, double elapsed_time);
 
 /**
  * Render the particles.
  */
-void render_explosion(const Explosion* explosion);
+void render_snow(const Snow* snow);
 
-#endif /* EXPLOSION_H */
+#endif /* SNOW_H */
 
