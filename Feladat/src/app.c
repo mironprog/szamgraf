@@ -13,6 +13,10 @@ void init_app(App* app, int width, int height)
     app->is_running = false;
     app->show_manual = false;
 
+    app->brightness = 1.0f;           
+    app->increase_brightness = false; 
+    SDL_SetWindowBrightness(app->window, app->brightness);
+
     error_code = SDL_Init(SDL_INIT_EVERYTHING);
     if (error_code != 0) {
         printf("[ERROR] SDL initialization error: %s\n", SDL_GetError());
@@ -58,7 +62,6 @@ void init_opengl()
     glEnable(GL_AUTO_NORMAL);
 
     glClearColor(0.1, 0.1, 0.1, 1.0);
-    //glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -147,6 +150,9 @@ void handle_app_events(App* app)
             case SDL_SCANCODE_D:
                 set_camera_side_speed(&(app->camera), -1);
                 break;
+            case SDL_SCANCODE_B:
+                app->increase_brightness = true;
+                break;
             default:
                 break;
             }
@@ -164,6 +170,9 @@ void handle_app_events(App* app)
             case SDL_SCANCODE_SPACE:
             case SDL_SCANCODE_LSHIFT:
                 set_camera_vert_speed(&(app->camera), 0);
+                break;
+            case SDL_SCANCODE_B:
+                app->increase_brightness = false;
                 break;
             default:
                 break;
@@ -203,6 +212,14 @@ void update_app(App* app)
 
     update_camera(&(app->camera), elapsed_time);
     update_scene(&(app->scene), elapsed_time);
+
+    if (app->increase_brightness && app->brightness < 2.0f) {
+    app->brightness += elapsed_time * 0.3f; 
+    if (app->brightness > 2.0f) {
+        app->brightness = 2.0f;
+    }
+    SDL_SetWindowBrightness(app->window, app->brightness);
+}
 }
 
 void render_app(App* app)
@@ -236,7 +253,7 @@ void render_app(App* app)
 
         glColor3f(1.0f, 1.0f, 1.0f);
         glEnableClientState(GL_VERTEX_ARRAY);
-        glScalef(3.0f, 3.0f, 1.0f); // Scale up (2x size)
+        glScalef(3.0f, 3.0f, 1.0f); 
         glVertexPointer(2, GL_FLOAT, 16, buffer);
         glDrawArrays(GL_QUADS, 0, num_quads * 4);
         glDisableClientState(GL_VERTEX_ARRAY);
