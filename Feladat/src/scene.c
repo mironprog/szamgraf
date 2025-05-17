@@ -84,16 +84,19 @@ void render_scene(const Scene* scene)
     draw_origin();
     render_snow(&(scene->snow));
     
-    glPushMatrix();
+    for (float x = 0; x <= 5; x += 2.0f) {
+        for (float y = 0; y <= 5; y += 2.0f) {
+            glPushMatrix();
 
-    // Fix orientation and size here
-    glScalef(0.2f, 0.2f, 0.2f);     // Make it smaller
-    glRotatef(90, 1.0f, 0.0f, 0.0f); // Rotate -90 degrees around X-axis to stand it up
-    glTranslatef(0.0f, 0.0f, 0.0f);   // Optional: move it if needed
+            glTranslatef(x, y, 0.0f); 
+            glRotatef(90, 1.0f, 0.0f, 0.0f); 
+            glScalef(0.2f, 0.2f, 0.2f);     
 
-    draw_model(&(scene->cube));
+            draw_model(&(scene->cube));
 
-    glPopMatrix();
+            glPopMatrix();
+        }
+    }
 }
 
 void draw_origin()
