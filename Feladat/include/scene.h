@@ -53,4 +53,6 @@ void render_scene(const Scene* scene);
  */
 void draw_origin();
 
+void draw_ground();
+
 #endif /* SCENE_H */

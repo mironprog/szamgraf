@@ -93,6 +93,7 @@ void render_scene(const Scene* scene)
     set_material(&(scene->material));
     set_lighting();
     draw_origin();
+    draw_ground();
     render_snow(&(scene->snow));
     
     for (int i = 0; i < NUM_TREES; i++) {
@@ -125,4 +126,21 @@ void draw_origin()
     glVertex3f(0, 0, 1);
 
     glEnd();
+}
+
+void draw_ground()
+{
+    glDisable(GL_TEXTURE_2D);
+    glBegin(GL_QUADS); 
+    
+    glColor3f(1.0f, 1.0f, 1.0f); 
+
+    float ground_level = 0.0f;
+
+    glVertex3f(-50.0f, -50.0f, ground_level);
+    glVertex3f( 50.0f, -50.0f, ground_level); 
+    glVertex3f( 50.0f, 50.0f, ground_level); 
+    glVertex3f(-50.0f, 50.0f, ground_level); 
+
+    glEnd(); 
 }
