@@ -30,6 +30,18 @@ void init_scene(Scene* scene)
     scene->material.specular.blue = 0.0;
 
     scene->material.shininess = 0.0;
+
+    srand((unsigned int)time(NULL));
+
+    int index = 0;
+    for (float x = -5; x <= 5; x += 2.0f) {
+        for (float y = -5; y <= 5; y += 2.0f) {
+            scene->trees[index].x = x + (((float)(rand() % 100) / 100.0f) - 0.5f);
+            scene->trees[index].y = y + (((float)(rand() % 100) / 100.0f) - 0.5f);
+            scene->trees[index].rotation = (float)(rand() % 360);
+            index++;
+        }
+    }
 }
 
 void set_lighting()
@@ -84,18 +96,17 @@ void render_scene(const Scene* scene)
     draw_origin();
     render_snow(&(scene->snow));
     
-    for (float x = 0; x <= 5; x += 2.0f) {
-        for (float y = 0; y <= 5; y += 2.0f) {
-            glPushMatrix();
+    for (int i = 0; i < NUM_TREES; i++) {
+        glPushMatrix();
 
-            glTranslatef(x, y, 0.0f); 
-            glRotatef(90, 1.0f, 0.0f, 0.0f); 
-            glScalef(0.2f, 0.2f, 0.2f);     
+        glTranslatef(scene->trees[i].x, scene->trees[i].y, 0.0f);
+        glRotatef(90, 1.0f, 0.0f, 0.0f);
+        //glRotatef(scene->trees[i].rotation, 0.0f, 0.0f, 1.0f);
+        glScalef(0.2f, 0.2f, 0.2f);
 
-            draw_model(&(scene->cube));
+        draw_model(&(scene->cube));
 
-            glPopMatrix();
-        }
+        glPopMatrix();
     }
 }
 

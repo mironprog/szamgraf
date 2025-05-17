@@ -1,5 +1,6 @@
 #ifndef SCENE_H
 #define SCENE_H
+#define NUM_TREES 36 
 
 #include "camera.h"
 #include "snow.h"
@@ -8,12 +9,18 @@
 
 #include <obj/model.h>
 
+typedef struct {
+    float x, y;
+    float rotation;
+} TreeInstance;
+
 typedef struct Scene
 {
     Model cube;
     Material material;
     GLuint texture_id;
     Snow snow;
+    TreeInstance trees[NUM_TREES];
 } Scene;
 
 /**
