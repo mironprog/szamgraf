@@ -8,7 +8,7 @@
 void init_scene(Scene* scene)
 {
     load_model(&(scene->cube), "assets/models/tree.obj");
-    scene->texture_id = load_texture("assets/textures/tree.png");
+    scene->texture_id = load_texture("assets/textures/tree_trunk.png");
 
     glEnable(GL_COLOR_MATERIAL);
     glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);

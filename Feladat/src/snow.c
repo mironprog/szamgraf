@@ -12,7 +12,7 @@
 void init_snow(Snow* snow)
 {
     load_model(&(snow->model), "assets/models/cube.obj");
-    snow->texture_id = load_texture("assets/textures/tree.png");
+    snow->texture_id = load_texture("assets/textures/tree_trunk.png");
 
     for (int i = 0; i < N_PARTICLES; ++i) {
         snow->particles[i].position.x = 0;
