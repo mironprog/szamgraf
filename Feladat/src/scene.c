@@ -8,7 +8,7 @@
 void init_scene(Scene* scene)
 {
     load_model(&(scene->cube), "assets/models/tree.obj");
-    scene->texture_id = load_texture("assets/textures/cube.png");
+    scene->texture_id = load_texture("assets/textures/tree.png");
 
     glEnable(GL_COLOR_MATERIAL);
     glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
@@ -38,7 +38,6 @@ void init_scene(Scene* scene)
         for (float y = -5; y <= 5; y += 2.0f) {
             scene->trees[index].x = x + (((float)(rand() % 100) / 100.0f) - 0.5f);
             scene->trees[index].y = y + (((float)(rand() % 100) / 100.0f) - 0.5f);
-            scene->trees[index].rotation = (float)(rand() % 360);
             index++;
         }
     }
@@ -101,7 +100,6 @@ void render_scene(const Scene* scene)
 
         glTranslatef(scene->trees[i].x, scene->trees[i].y, 0.0f);
         glRotatef(90, 1.0f, 0.0f, 0.0f);
-        //glRotatef(scene->trees[i].rotation, 0.0f, 0.0f, 1.0f);
         glScalef(0.2f, 0.2f, 0.2f);
 
         draw_model(&(scene->cube));
