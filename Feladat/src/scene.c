@@ -7,7 +7,7 @@
 
 void init_scene(Scene* scene)
 {
-    load_model(&(scene->cube), "assets/models/truncpyr.obj");
+    load_model(&(scene->cube), "assets/models/tree.obj");
     scene->texture_id = load_texture("assets/textures/cube.png");
 
     glEnable(GL_COLOR_MATERIAL);
@@ -83,7 +83,17 @@ void render_scene(const Scene* scene)
     set_lighting();
     draw_origin();
     render_snow(&(scene->snow));
+    
+    glPushMatrix();
+
+    // Fix orientation and size here
+    glScalef(0.2f, 0.2f, 0.2f);     // Make it smaller
+    glRotatef(90, 1.0f, 0.0f, 0.0f); // Rotate -90 degrees around X-axis to stand it up
+    glTranslatef(0.0f, 0.0f, 0.0f);   // Optional: move it if needed
+
     draw_model(&(scene->cube));
+
+    glPopMatrix();
 }
 
 void draw_origin()
