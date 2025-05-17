@@ -94,7 +94,18 @@ void render_scene(const Scene* scene)
     set_lighting();
     draw_origin();
     draw_ground();
-    render_snow(&(scene->snow));
+    
+    // Render multiple snow patches scattered across the map
+    for (float x = 0; x <= 5; x += 2.0f) {
+        for (float y = 0; y <= 5; y += 2.0f) {
+            glPushMatrix();
+
+            glTranslatef(x, y, 0.0f);  // Move snow to different horizontal positions
+            render_snow(&(scene->snow));  // Render the same snow instance multiple times
+
+            glPopMatrix();
+        }
+    }
     
     for (int i = 0; i < NUM_TREES; i++) {
         glPushMatrix();
