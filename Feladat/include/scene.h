@@ -18,7 +18,8 @@ typedef struct Scene
 {
     Model cube;
     Material material;
-    GLuint texture_id;
+    GLuint trunk_texture_id;
+    GLuint crown_texture_id;
     Snow snow;
     TreeInstance trees[NUM_TREES];
 } Scene;

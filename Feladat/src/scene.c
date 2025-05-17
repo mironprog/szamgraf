@@ -8,12 +8,16 @@
 void init_scene(Scene* scene)
 {
     load_model(&(scene->cube), "assets/models/tree.obj");
-    scene->texture_id = load_texture("assets/textures/tree_trunk.png");
+    
+    scene->trunk_texture_id = load_texture("assets/textures/tree_trunk.png"); 
+
+    scene->crown_texture_id = load_texture("assets/textures/tree_crown.png"); 
+
 
     glEnable(GL_COLOR_MATERIAL);
     glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
 
-    glBindTexture(GL_TEXTURE_2D, scene->texture_id);
+    
     
     init_snow(&(scene->snow));
 

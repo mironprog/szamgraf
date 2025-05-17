@@ -16,7 +16,8 @@ typedef struct Particle {
 
 typedef struct Snow {
   Model model;
-  GLuint texture_id;
+  GLuint trunk_texture_id;
+  GLuint crown_texture_id;
   Particle particles[N_PARTICLES];
 } Snow;
 
