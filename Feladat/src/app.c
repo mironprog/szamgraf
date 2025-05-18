@@ -13,10 +13,6 @@ void init_app(App* app, int width, int height)
     app->is_running = false;
     app->show_manual = false;
 
-    app->brightness = 1.0f;           
-    app->increase_brightness = false; 
-    SDL_SetWindowBrightness(app->window, app->brightness);
-
     error_code = SDL_Init(SDL_INIT_EVERYTHING);
     if (error_code != 0) {
         printf("[ERROR] SDL initialization error: %s\n", SDL_GetError());
@@ -212,14 +208,6 @@ void update_app(App* app)
 
     update_camera(&(app->camera), elapsed_time);
     update_scene(&(app->scene), elapsed_time);
-
-    if (app->increase_brightness && app->brightness < 2.0f) {
-    app->brightness += elapsed_time * 0.3f; 
-    if (app->brightness > 2.0f) {
-        app->brightness = 2.0f;
-    }
-    SDL_SetWindowBrightness(app->window, app->brightness);
-}
 }
 
 void render_app(App* app)
