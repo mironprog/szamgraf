@@ -120,10 +120,12 @@ void handle_app_events(App* app)
                 app->show_manual = !app->show_manual;
                 break;                
             case SDL_SCANCODE_J:
-                SDL_SetWindowBrightness((app->window), 0.5f);
+                app->scene.ambient_intensity += 0.1f;
+                app->scene.diffuse_intensity += 0.1f;
                 break;
             case SDL_SCANCODE_K:
-                SDL_SetWindowBrightness((app->window), 1.0f);
+                app->scene.ambient_intensity -= 0.1f;
+                app->scene.diffuse_intensity -= 0.1f;
                 break;
             case SDL_SCANCODE_SPACE:
                 set_camera_vert_speed(&(app->camera), 1);

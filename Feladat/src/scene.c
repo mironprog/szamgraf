@@ -41,12 +41,25 @@ void init_scene(Scene* scene)
             index++;
         }
     }
+
+    scene->ambient_intensity = 0.5f;
+    scene->diffuse_intensity = 0.5f; 
 }
 
-void set_lighting()
+void set_lighting(const Scene* scene)
 {
-    float ambient_light[] = { 5.0f, 6.0f, 7.0f, 1.0f };
-    float diffuse_light[] = { 5.0f, 5.0f, 5.0, 1.0f };
+    float ambient_light[] = {
+        scene->ambient_intensity,
+        scene->ambient_intensity,
+        scene->ambient_intensity,
+        1.0f
+    };
+    float diffuse_light[] = {
+        scene->diffuse_intensity,
+        scene->diffuse_intensity,
+        scene->diffuse_intensity,
+        1.0f
+    };
     float specular_light[] = { 0.0f, 0.0f, 0.0f, 1.0f };
     float position[] = { 0.0f, 0.0f, 10.0f, 1.0f };
 
@@ -91,17 +104,17 @@ void update_scene(Scene* scene, double elapsed_time)
 void render_scene(const Scene* scene)
 {
     set_material(&(scene->material));
-    set_lighting();
+    set_lighting(scene);
     draw_origin();
     draw_ground();
     
-    // Render multiple snow patches scattered across the map
+    
     for (float x = 0; x <= 5; x += 2.0f) {
         for (float y = 0; y <= 5; y += 2.0f) {
             glPushMatrix();
 
-            glTranslatef(x, y, 0.0f);  // Move snow to different horizontal positions
-            render_snow(&(scene->snow));  // Render the same snow instance multiple times
+            glTranslatef(x, y, 0.0f);  
+            render_snow(&(scene->snow));  
 
             glPopMatrix();
         }

@@ -21,6 +21,8 @@ typedef struct Scene
     GLuint texture_id;
     Snow snow;
     TreeInstance trees[NUM_TREES];
+    float ambient_intensity;
+    float diffuse_intensity;
 } Scene;
 
 /**
@@ -31,7 +33,7 @@ void init_scene(Scene* scene);
 /**
  * Set the lighting of the scene.
  */
-void set_lighting();
+void set_lighting(const Scene* scene);
 
 /**
  * Set the current material.
