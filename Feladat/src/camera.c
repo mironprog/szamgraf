@@ -33,6 +33,16 @@ void update_camera(Camera* camera, double time)
     camera->position.y += sin(side_angle) * camera->speed.x * time;
     camera->position.z += cos(side_angle) * camera->speed.z * time;
     camera->position.z += sin(side_angle) * camera->speed.z * time;
+
+    const double ground_level = 0.0;
+    const double camera_height = 0.4;
+
+    if (camera->position.z < ground_level + camera_height) { 
+        camera->position.z = ground_level + camera_height;
+        if (camera->speed.z < 0) {
+            camera->speed.z = 0;
+        }
+    }
 }
 
 void set_view(const Camera* camera)
