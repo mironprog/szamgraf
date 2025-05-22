@@ -3,9 +3,9 @@
 
 #include "utils.h"
 
-
 #include <stdbool.h>
 
+typedef struct Scene Scene; 
 /**
  * Camera, as a moving point with direction
  */
@@ -15,6 +15,7 @@ typedef struct Camera
     vec3 rotation;
     vec3 speed;
     double height;
+    double radius;
     bool is_preview_visible;
 } Camera;
 
@@ -26,7 +27,7 @@ void init_camera(Camera* camera);
 /**
  * Update the position of the camera.
  */
-void update_camera(Camera* camera, double time);
+void update_camera(Camera* camera, const Scene* scene, double time);
 
 /**
  * Apply the camera settings to the view transformation.
@@ -49,6 +50,8 @@ void set_camera_speed(Camera* camera, double speed);
 void set_camera_side_speed(Camera* camera, double speed);
 
 void set_camera_vert_speed(Camera* camera, double speed);
+
+static double dist_2d(double x1, double y1, double x2, double y2);
 
 
 #endif /* CAMERA_H */
