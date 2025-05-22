@@ -60,5 +60,7 @@ void render_app(App* app);
  */
 void destroy_app(App* app);
 
+void show_texture_preview();
+
 
 #endif /* APP_H */

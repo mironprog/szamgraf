@@ -53,7 +53,5 @@ void set_camera_side_speed(Camera* camera, double speed);
 
 void set_camera_vert_speed(Camera* camera, double speed);
 
-static double dist_2d(double x1, double y1, double x2, double y2);
-
 
 #endif /* CAMERA_H */
