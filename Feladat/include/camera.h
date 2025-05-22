@@ -14,6 +14,7 @@ typedef struct Camera
     vec3 position;
     vec3 rotation;
     vec3 speed;
+    double height;
     bool is_preview_visible;
 } Camera;
 

@@ -6,9 +6,10 @@
 
 void init_camera(Camera* camera)
 {
-    camera->position.x = 0.0;
-    camera->position.y = 0.0;
-    camera->position.z = 1.0;
+    camera->height = 0.4;
+    camera->position.x = 2.0;
+    camera->position.y = 2.0;
+    camera->position.z = 0.0 + camera->height;
     camera->rotation.x = 0.0;
     camera->rotation.y = 0.0;
     camera->rotation.z = 0.0;
@@ -37,8 +38,8 @@ void update_camera(Camera* camera, double time)
     const double ground_level = 0.0;
     const double camera_height = 0.4;
 
-    if (camera->position.z < ground_level + camera_height) { 
-        camera->position.z = ground_level + camera_height;
+    if (camera->position.z < ground_level + camera->height) { 
+        camera->position.z = ground_level + camera->height;
         if (camera->speed.z < 0) {
             camera->speed.z = 0;
         }

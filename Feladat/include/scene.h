@@ -1,6 +1,6 @@
 #ifndef SCENE_H
 #define SCENE_H
-#define NUM_TREES 36 
+#define NUM_TREES 32
 
 #include "camera.h"
 #include "snow.h"
