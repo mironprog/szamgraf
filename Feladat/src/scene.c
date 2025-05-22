@@ -10,10 +10,14 @@ void init_scene(Scene* scene)
     load_model(&(scene->cube), "assets/models/tree.obj");
     scene->texture_id = load_texture("assets/textures/tree_trunk.png");
 
+    load_model(&(scene->mountain_model), "assets/models/everest.obj"); 
+    scene->mountain_texture_id = load_texture("assets/textures/snow_texture.png"); 
+
+
     glEnable(GL_COLOR_MATERIAL);
     glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
 
-    glBindTexture(GL_TEXTURE_2D, scene->texture_id);
+    //glBindTexture(GL_TEXTURE_2D, scene->texture_id);
     
     init_snow(&(scene->snow));
 
@@ -105,6 +109,7 @@ void render_scene(const Scene* scene)
 {
     set_material(&(scene->material));
     set_lighting(scene);
+    glDisable(GL_TEXTURE_2D);
     draw_origin();
     draw_ground();
     
@@ -120,6 +125,8 @@ void render_scene(const Scene* scene)
         }
     }
     
+    glEnable(GL_TEXTURE_2D); 
+    glBindTexture(GL_TEXTURE_2D, scene->texture_id);
     for (int i = 0; i < NUM_TREES; i++) {
         glPushMatrix();
 
@@ -131,6 +138,25 @@ void render_scene(const Scene* scene)
 
         glPopMatrix();
     }
+
+    glBindTexture(GL_TEXTURE_2D, scene->mountain_texture_id); // Bind the mountain's snow texture
+    glPushMatrix();
+
+    // These values are examples and will likely need tuning for your specific mountain.obj model.
+    // Adjust position (X, Y, Z) and scale (X, Y, Z) to place and size it correctly.
+    // For example, if your mountain appears too small, increase scale factors.
+    // If it's too high or low, adjust the Z in glTranslatef.
+    glTranslatef(16.0f, 10.0f, 0.0f); // Example: Centered on X/Y, base at Z=0
+    glScalef(10.0f, 10.0f, 10.0f); // Example: Make it quite large
+
+    // If your mountain model isn't upright or is oriented strangely,
+    // you might need additional rotations here, e.g.:
+    // glRotatef(90.0f, 1.0f, 0.0f, 0.0f); // Example: Rotate if it's on its side
+
+    draw_model(&(scene->mountain_model)); // Draw the actual mountain model
+
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
 }
 
 void draw_origin()
@@ -166,5 +192,6 @@ void draw_ground()
     glVertex3f( 50.0f, 50.0f, ground_level); 
     glVertex3f(-50.0f, 50.0f, ground_level); 
 
-    glEnd(); 
+    glEnd();
+    glEnable(GL_TEXTURE_2D);
 }

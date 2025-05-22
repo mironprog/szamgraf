@@ -1,6 +1,6 @@
 #ifndef SCENE_H
 #define SCENE_H
-#define NUM_TREES 32
+#define NUM_TREES 36
 
 #include "camera.h"
 #include "snow.h"
@@ -21,6 +21,8 @@ typedef struct Scene
     GLuint texture_id;
     Snow snow;
     TreeInstance trees[NUM_TREES];
+    Model mountain_model;      
+    GLuint mountain_texture_id;
     float ambient_intensity;
     float diffuse_intensity;
 } Scene;
