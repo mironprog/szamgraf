@@ -54,7 +54,6 @@ void update_snow(Snow* snow, double elapsed_time)
 void render_snow(const Snow* snow)
 {
     glDisable(GL_TEXTURE_2D);
-    glDisable(GL_LIGHTING);
     glColor3f(1.0f, 1.0f, 1.0f);
 
     for (int i = 0; i < N_PARTICLES; ++i) {
@@ -69,6 +68,5 @@ void render_snow(const Snow* snow)
         glPopMatrix();
     }
 
-    glEnable(GL_LIGHTING);
     glEnable(GL_TEXTURE_2D);
 }
