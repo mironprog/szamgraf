@@ -5,6 +5,8 @@
 
 #include <stdbool.h>
 
+#define JUMP_SPEED 5.0
+
 typedef struct Scene Scene; 
 /**
  * Camera, as a moving point with direction

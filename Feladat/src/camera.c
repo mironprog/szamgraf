@@ -5,6 +5,9 @@
 
 #include <math.h>
 
+#define GRAVITY -9.8
+
+
 void init_camera(Camera* camera)
 {
     camera->height = 0.4;
@@ -50,6 +53,8 @@ void update_camera(Camera* camera, const Scene* scene, double time)
 
     next_x += delta_x_forward + delta_x_side;
     next_y += delta_y_forward + delta_y_side;
+
+    camera->speed.z += GRAVITY * time;
 
     next_z += camera->speed.z * time;
 

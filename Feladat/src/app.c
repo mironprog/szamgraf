@@ -128,7 +128,7 @@ void handle_app_events(App* app)
                 app->scene.diffuse_intensity -= 0.1f;
                 break;
             case SDL_SCANCODE_SPACE:
-                set_camera_vert_speed(&(app->camera), 1);
+                set_camera_vert_speed(&(app->camera), JUMP_SPEED);
                 break;
             case SDL_SCANCODE_LSHIFT:
                 set_camera_vert_speed(&(app->camera), -1);
