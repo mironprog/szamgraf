@@ -4,8 +4,6 @@
 #include <stdio.h>
 #include <SDL2/SDL_image.h>
 
-
-
 void init_app(App* app, int width, int height)
 {
     int error_code;
@@ -58,8 +56,8 @@ void init_opengl()
     glEnable(GL_NORMALIZE);
     glEnable(GL_AUTO_NORMAL);
 
-    glClearColor(0.1, 0.1, 0.1, 1.0);
-
+    glClearColor(0.85f, 0.85f, 0.85f, 1.0f);
+  
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
@@ -98,7 +96,7 @@ void reshape(GLsizei width, GLsizei height)
     glFrustum(
         -.08, .08,
         -.06, .06,
-        .1, 30
+        .1, 100
     );
 }
 
@@ -222,10 +220,6 @@ void render_app(App* app)
     set_view(&(app->camera));
     render_scene(&(app->scene));
     glPopMatrix();
-
-    if (app->camera.is_preview_visible) {
-        show_texture_preview();
-    }
 
     if (app->show_manual) {
         static char buffer[9999];

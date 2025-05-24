@@ -10,7 +10,6 @@
 #include <stdbool.h>
 
 #define VIEWPORT_RATIO (4.0 / 3.0)
-#define VIEWPORT_ASPECT 50.0
 
 typedef struct App
 {
@@ -60,7 +59,7 @@ void render_app(App* app);
  */
 void destroy_app(App* app);
 
-void show_texture_preview();
+
 
 
 #endif /* APP_H */
