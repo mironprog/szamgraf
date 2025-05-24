@@ -2,6 +2,8 @@
 
 #include <obj/load.h>
 #include <obj/draw.h>
+#include <time.h>
+#include <stdlib.h>
 
 #include "snow.h"
 

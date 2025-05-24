@@ -6,7 +6,10 @@
  * Main function
  */
 int main(int argc, char* argv[])
-{
+{   
+    (void)argc; 
+    (void)argv; 
+    
     App app;
 
     init_app(&app, 1024, 768);

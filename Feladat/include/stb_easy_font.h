@@ -82,6 +82,11 @@
 //   github:vassvik    --  bug report
 //   github:podsvirov  --  fix multiple definition errors
 
+#ifdef __GNUC__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+#endif
+
 #if 0
 // SAMPLE CODE:
 //
@@ -260,6 +265,10 @@ static int stb_easy_font_height(char *text)
     }
     return (int) ceil(y + (nonempty_line ? 12 : 0));
 }
+#endif
+
+#ifdef __GNUC__
+#pragma GCC diagnostic pop
 #endif
 
 /*
