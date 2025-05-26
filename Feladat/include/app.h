@@ -20,8 +20,6 @@ typedef struct App
     Camera camera;
     Scene scene;
     bool show_manual;
-    bool increase_brightness;
-    float brightness; 
 } App;
 
 /**

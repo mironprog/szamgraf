@@ -57,8 +57,6 @@ void init_opengl()
     glEnable(GL_AUTO_NORMAL);
 
     glClearColor(0.6f, 0.7f, 0.75f, 1.0f);
-    
-    
   
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -149,9 +147,6 @@ void handle_app_events(App* app)
             case SDL_SCANCODE_D:
                 set_camera_side_speed(&(app->camera), -1);
                 break;
-            case SDL_SCANCODE_B:
-                app->increase_brightness = true;
-                break;
             default:
                 break;
             }
@@ -169,9 +164,6 @@ void handle_app_events(App* app)
             case SDL_SCANCODE_SPACE:
             case SDL_SCANCODE_LSHIFT:
                 set_camera_vert_speed(&(app->camera), 0);
-                break;
-            case SDL_SCANCODE_B:
-                app->increase_brightness = false;
                 break;
             default:
                 break;
