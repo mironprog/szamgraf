@@ -19,7 +19,7 @@ void init_app(App* app, int width, int height)
     }
 
     app->window = SDL_CreateWindow(
-        "Cube!",
+        "Csomolungma!",
         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         width, height,
         SDL_WINDOW_OPENGL);
@@ -56,7 +56,9 @@ void init_opengl()
     glEnable(GL_NORMALIZE);
     glEnable(GL_AUTO_NORMAL);
 
-    glClearColor(0.85f, 0.85f, 0.85f, 1.0f);
+    glClearColor(0.6f, 0.7f, 0.75f, 1.0f);
+    
+    
   
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
