@@ -35,8 +35,6 @@ void init_scene(Scene* scene)
 
     scene->material.shininess = 0.0;
 
-    srand((unsigned int)time(NULL));
-
     int index = 0;
     for (float x = -5; x <= 5; x += 2.0f) {
         for (float y = -5; y <= 5; y += 2.0f) {

@@ -217,7 +217,7 @@ void render_app(App* app)
 
     if (app->show_manual) {
         static char buffer[9999];
-        static const char* help_text = "F1 - Toggle Help\nJ - Darken screen\nK - Brighten screen";
+        static const char* help_text = "F1 - Toggle Help\nJ - Brighten screen\nK - Darken screen";
 
         int num_quads = stb_easy_font_print(90, 75, (char*)help_text, NULL, buffer, sizeof(buffer));
 
